@@ -1,9 +1,12 @@
-package com.example.pokedexmvvm.ui;
+package com.example.pokedexmvvm.ui.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.paging.PagedListAdapter;
 import androidx.recyclerview.widget.DiffUtil;
@@ -11,8 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.example.pokedexmvvm.R;
 import com.example.pokedexmvvm.data.models.ItemPokemon;
-import com.example.pokedexmvvm.databinding.PokemonItemBinding;
 
 import java.text.MessageFormat;
 
@@ -21,10 +24,15 @@ public class PokemonListAdapter extends PagedListAdapter<ItemPokemon, PokemonLis
     public static final String IMAGE_URL = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/";
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private final PokemonItemBinding binding;
-        private ViewHolder(@NonNull PokemonItemBinding binding) {
-            super(binding.getRoot());
-            this.binding = binding;
+
+        TextView nameTextView;
+        TextView id;
+        ImageView imagePokemon;
+        private ViewHolder(@NonNull View itemView) {
+            super(itemView);
+            nameTextView = itemView.findViewById(R.id.namePokemon);
+            id = itemView.findViewById(R.id.num);
+            imagePokemon = itemView.findViewById(R.id.image_pokemon);
         }
     }
 
@@ -62,9 +70,10 @@ public class PokemonListAdapter extends PagedListAdapter<ItemPokemon, PokemonLis
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context)
+                .inflate(R.layout.pokemon_item, parent, false);
 
-        PokemonItemBinding binding = PokemonItemBinding.inflate(LayoutInflater.from(parent.getContext()));
-        return new ViewHolder(binding);
+        return new ViewHolder(view);
     }
 
     @Override
@@ -75,16 +84,17 @@ public class PokemonListAdapter extends PagedListAdapter<ItemPokemon, PokemonLis
         String name = item.getName();
         int id = item.getNumber();
 
-        holder.binding.namePokemon.setText(name);
-        holder.binding.num.setText(MessageFormat.format("Nº = {0}", id));
+        holder.nameTextView.setText(name);
+        holder.id.setText(MessageFormat.format("# = {0}", id));
 
         Glide.with(context)
                 .load( IMAGE_URL + id + ".png")
                 .centerCrop()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(holder.binding.imagePokemon);
+                .into(holder.imagePokemon);
 
         holder.itemView.setOnClickListener(v -> itemClickListener.onClick(position, v));
 
     }
 }
+

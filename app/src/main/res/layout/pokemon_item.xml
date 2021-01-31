@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="start"
     android:layout_gravity="center"
     android:padding="2dp"
-    android:background="#FFFFFF">
+    android:background="@color/red">
 
-    <LinearLayout
+    <androidx.cardview.widget.CardView
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="start"
         android:layout_gravity="center"
         android:padding="2dp"
+        card_view:cardCornerRadius="50dp"
         android:background="#FFFFFF">
 
         <LinearLayout
@@ -37,24 +39,24 @@
 
                 <TextView
                     android:id="@+id/namePokemon"
-                    android:layout_marginStart="5dp"
+                    android:layout_marginStart="0dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:maxLines="2"
                     android:text="@string/name"
-                    android:textSize="32sp"
+                    android:textSize="28sp"
                     android:textAppearance="@style/recyclerItemsNameTextStyle" />
 
                 <TextView
                     android:id="@+id/num"
-                    android:layout_marginStart="5dp"
+                    android:layout_marginStart="0dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:maxLines="2"
                     android:text="@string/name"
-                    android:textSize="25sp"
+                    android:textSize="21sp"
                     android:textAppearance="@style/recyclerItemsNameTextStyle" />
 
 
@@ -63,9 +65,5 @@
 
         </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#515151"/>
-    </LinearLayout>
+    </androidx.cardview.widget.CardView>
 </LinearLayout>

@@ -16,8 +16,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         View navHost = findViewById(R.id.nav_host_fragment);
-        NavController navController = Navigation.findNavController(navHost);
-        NavigationUI.setupActionBarWithNavController(this, navController);
+        //NavController navController = Navigation.findNavController(navHost);
+        //NavigationUI.setupActionBarWithNavController(this, navController);
     }
 
     @Override
