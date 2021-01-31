@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">Pokedex</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="charactersButtonString">Characters</string>
+    <string name="episodesButtonString">Episodes</string>
+    <string name="locationsButtonString">Locations</string>
+    <string name="somethingWentWrongErrorText">Aw geez! Something went wrong.</string>
+    <string name="notFoundErrorCode">404</string>
+    <string name="notFoundErrorText">Aw man! No se han encontrado resultados.</string>
+    <string name="searchMenuTitle">Search</string>
+    <string name="queryIndicator">Los resultados encontrados para %1s son: </string>
+    <string name="episodeBundleKey">episode</string>
+    <string name="characterBundleKey">character</string>
+    <string name="locationBundleKey">location</string>
+    <string name="search_characters">Buscar Personajes...</string>
+    <string name="retry">Retry</string>
+
 </resources>
