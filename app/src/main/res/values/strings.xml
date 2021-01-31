@@ -16,5 +16,5 @@
     <string name="locationBundleKey">location</string>
     <string name="search_characters">Buscar Personajes...</string>
     <string name="retry">Retry</string>
-
+    <string name="name">Name</string>
 </resources>
