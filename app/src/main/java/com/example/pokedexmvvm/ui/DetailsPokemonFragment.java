@@ -1,5 +1,6 @@
 package com.example.pokedexmvvm.ui;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -42,7 +43,6 @@ public class DetailsPokemonFragment extends Fragment {
         // Inflate the layout for this fragment
 
         binding = FragmentDetailsPokemonBinding.inflate(inflater, container, false);
-
         Bundle args = getArguments();
         if(args != null) {
             item = (ItemPokemon) args.getSerializable(getString(R.string.characterBundleKey));
@@ -52,10 +52,16 @@ public class DetailsPokemonFragment extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        binding.progress.setVisibility(View.VISIBLE);
+    }
+
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         binding.characterNameTextView.setText(item.getName());
-
+        binding.progress.getIndeterminateDrawable().setColorFilter(Color.RED, android.graphics.PorterDuff.Mode.MULTIPLY);
         Glide.with(requireContext())
                 .load( IMAGE_URL + item.getNumber() + ".png")
                 .centerCrop()
@@ -66,7 +72,7 @@ public class DetailsPokemonFragment extends Fragment {
         final Observer<Pokemon> observer = new Observer<Pokemon>() {
             @Override
             public void onChanged(Pokemon responseDetail) {
-
+                binding.progress.setVisibility(View.INVISIBLE);
                 String base = String.valueOf(responseDetail.getBaseExperience());
                 String height = String.valueOf(responseDetail.getHeight());
                 String weight = String.valueOf(responseDetail.getWeight());
@@ -92,6 +98,7 @@ public class DetailsPokemonFragment extends Fragment {
 
             }
         };
+
 
         dataViewModel.getHangmanRepository(String.valueOf(item.getNumber())).observe(getViewLifecycleOwner(),observer);
 

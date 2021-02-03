@@ -1,5 +1,6 @@
 package com.example.pokedexmvvm.ui;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -19,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.pokedexmvvm.R;
@@ -37,6 +39,7 @@ public class ListPokemonsFragment extends Fragment {
     private TextView errorTextView;
     private RecyclerView recyclerView;
     private NavController navController;
+    private ProgressBar bar;
 
     public ListPokemonsFragment() {
         // Required empty public constructor
@@ -57,7 +60,8 @@ public class ListPokemonsFragment extends Fragment {
         navController = Navigation.findNavController(view);
         errorTextView = view.findViewById(R.id.loadErrorTextView);
         recyclerView = view.findViewById(R.id.recyclerView);
-
+        bar = view.findViewById(R.id.progress);
+        bar.getIndeterminateDrawable().setColorFilter(Color.RED, android.graphics.PorterDuff.Mode.MULTIPLY);
 
 
         // initialize recyclerview
@@ -77,8 +81,10 @@ public class ListPokemonsFragment extends Fragment {
                     // If initial Data loaded successfully
                     if(throwable == null) {
                         onLoadSuccess();
+                        bar.setVisibility(View.GONE);
                     } else {
                         onLoadFailure(pokemonsDataSource, Objects.requireNonNull(throwable.getMessage()));
+                        bar.setVisibility(View.GONE);
                     }
                 })
         );
