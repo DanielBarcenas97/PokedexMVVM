@@ -2,9 +2,10 @@ package com.example.pokedexmvvm.data.models;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Pokemon {
+public class Pokemon implements Serializable {
 
     @SerializedName("location_area_encounters")
     private String locationAreaEncounters;
@@ -32,6 +33,9 @@ public class Pokemon {
 
     @SerializedName("order")
     private int order;
+
+    @SerializedName("types")
+    private List<TypesItem> types;
 
     public String getLocationAreaEncounters(){
         return locationAreaEncounters;
@@ -68,6 +72,10 @@ public class Pokemon {
 
     public int getOrder(){
         return order;
+    }
+
+    public List<TypesItem> getTypes(){
+        return types;
     }
 
 }

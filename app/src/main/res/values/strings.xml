@@ -17,4 +17,6 @@
     <string name="search_characters">Buscar Personajes...</string>
     <string name="retry">Retry</string>
     <string name="name">Name</string>
+    <string name="base_experience">Base Experience</string>
+    <string name="type">Type</string>
 </resources>

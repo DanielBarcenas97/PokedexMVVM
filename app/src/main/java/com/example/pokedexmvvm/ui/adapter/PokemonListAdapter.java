@@ -19,9 +19,10 @@ import com.example.pokedexmvvm.data.models.ItemPokemon;
 
 import java.text.MessageFormat;
 
+import static com.example.pokedexmvvm.ui.Constants.IMAGE_URL;
+
 public class PokemonListAdapter extends PagedListAdapter<ItemPokemon, PokemonListAdapter.ViewHolder> {
 
-    public static final String IMAGE_URL = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/";
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -83,6 +84,8 @@ public class PokemonListAdapter extends PagedListAdapter<ItemPokemon, PokemonLis
 
         String name = item.getName();
         int id = item.getNumber();
+
+        String url = item.getUrl();
 
         holder.nameTextView.setText(name);
         holder.id.setText(MessageFormat.format("# = {0}", id));
